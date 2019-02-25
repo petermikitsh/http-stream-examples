@@ -131,7 +131,7 @@ app.get('/users', async (req, res) => {
 /* Convenience page for accessing the '/users' endpoint. */
 app.get('/users/download', (req, res) => {
   res.contentType('html');
-  res.end('<a href="/test">Download</a>')
+  res.end('<a href="/users">Download</a>')
 });
 
 app.listen(3000, () => console.log(`Example app listening on port 3000!`))
