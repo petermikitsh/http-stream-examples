@@ -18,6 +18,12 @@ After ~1000ms, the first byte is sent. And at ~5000ms, the last byte is sent.
 
 ![HTTP GET /ttfb](ttfb.png)
 
+`GET /html`
+
+This shows how browsers handles a streaming DOM. Notice how the `title`, `body` and end of the document are progressively displayed. (Note: this browser behavior varies).
+
+![HTTP GET /html](html.gif)
+
 `GET /users`
 
 This endpoint demonstrates how to consume a paginated JSON api and convert it to CSV using streams and piping.

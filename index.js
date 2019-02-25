@@ -134,4 +134,32 @@ app.get('/users/download', (req, res) => {
   res.end('<a href="/users">Download</a>')
 });
 
+/* How browsers handle streaming HTML */
+app.get('/html', (req, res) => {
+  res.write('<!DOCTYPE html><html>\r\n');
+
+  setTimeout(() => {
+    res.write('<head><title>Title @ 1000ms</title></head>\r\n');
+  }, 1000);
+
+  setTimeout(() => {
+    res.write('<body>Body @ 3000ms\r\n');
+  }, 3000);
+
+  setTimeout(() => {
+    res.write(`
+      <script type="text/javascript">
+        document.bgColor = "#00ff00";
+        var elem = document.createElement('div');
+        elem.innerHTML = 'Body green @ 5000ms (This line was added via JS).';
+        document.body.append(elem);
+      </script>\r\n
+    `);
+  }, 5000);
+
+  setTimeout(() => {
+    res.end('<div>End of document @ 7000ms.</div></body></html>\r\n');
+  }, 7000);
+});
+
 app.listen(3000, () => console.log(`Example app listening on port 3000!`))
